@@ -76,7 +76,7 @@ $(TARGET).img: $(OBJS) $(LIBS) $(CIRCLEHOME)/lib/startup.o $(CIRCLEHOME)/circle.
 clean:
 	rm -f *.o *.a *.elf *.lst *.img *.cir *.map *~ $(EXTRACLEAN)
 
-run : clean $(TARGET).img
+run : 
 	qemu-system-arm -M raspi2 -m 128M -serial stdio -kernel kernel7.elf
 
 runimg :

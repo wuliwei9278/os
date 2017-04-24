@@ -17,11 +17,12 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
-#ifndef _circle_synchronize_h
-#define _circle_synchronize_h
+#ifndef _rpvm_synchronize_h
+#define _rpvm_synchronize_h
 
-#include <circle/macros.h>
-#include <circle/types.h>
+#include <rpvm/macros.h>
+//#include <rpvm/types.h>
+#include <rpvm/types.h>
 
 #ifdef __cplusplus
 extern "C" {

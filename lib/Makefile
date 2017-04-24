@@ -18,7 +18,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-OBJS	= actled.o alloc.o bcmmailbox.o bcmpropertytags.o gpiopin.o gpiopinfiq.o libhelper.o libstub.o memory.o new.o purecall.o synchronize.o sysinit.o timer.o util.o util_fast.o bcmframebuffer.o device.o koptions.o pagetable.o screen.o nulldevice.o assert.o chargenerator.o debug.o devicenameservice.o logger.o serial.o string.o delayloop.o exceptionhandler.o exceptionstub.o interrupt.o gpiomanager.o gpioclock.o dmachannel.o pwmsounddevice.o pwmsoundbasedevice.o pwmoutput.o tracer.o i2cmaster.o i2cslave.o spimaster.o spimasterdma.o virtualgpiopin.o machineinfo.o multicore.o spinlock.o bcmrandom.o cache-v7.o cputhrottle.o ptrarray.o ptrlist.o time.o
+OBJS	= actled.o alloc.o bcmmailbox.o bcmpropertytags.o gpiopin.o gpiopinfiq.o libhelper.o libstub.o memory.o new.o purecall.o synchronize.o sysinit.o timer.o util.o util_fast.o bcmframebuffer.o device.o koptions.o pagetable.o screen.o nulldevice.o assert.o chargenerator.o debug.o devicenameservice.o logger.o serial.o string.o delayloop.o exceptionhandler.o exceptionstub.o interrupt.o gpiomanager.o gpioclock.o dmachannel.o pwmsounddevice.o pwmsoundbasedevice.o pwmoutput.o tracer.o i2cmaster.o i2cslave.o spimaster.o spimasterdma.o virtualgpiopin.o machineinfo.o multicore.o spinlock.o bcmrandom.o cache-v7.o cputhrottle.o ptrarray.o ptrlist.o time.o uart.o
 
 all: startup.o libcircle.a
 
