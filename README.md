@@ -1,12 +1,11 @@
 # Raspberry Pi Bare Metal Programming
 
-[TOC]
+
 
 ### Code Envrionment Usage:
 
 - ```bash
-  git clone https://github.com/Piping/rpvm && cd rpvm
-  #rpvm is your_work_directory now
+  git clone ...
   #docker image for first time 
   docker build -t arm docker
   make code # this will lead you to the coding environment
@@ -22,53 +21,7 @@
 
 - inside docker Ctrl-p +Ctrl-q to detach from the shell, `docker attach arm` to get back code envrionment, `Ctrl+D`or type exit to leave and destory the container 
 
-### Git & Continuous Intergration
 
-- The way Travis works with pull requests is that it fetches the master repository, then merges the PR on top of it locally. That means that from the working copy, just looking which files changed since the last commit actually looks at the files changed during the merge.
-
-- [trigger test on last commit](https://github.com/DefinitelyTyped/DefinitelyTyped/issues/1314)
-
-- ####  Git Flow vs GitHub Flow vs Gitlab Flow
-
-  - practice **continuous delivery** means that your default branch can be deployed
-
-  - Git Flow:
-
-    - master / development branch seperation
-    - ![Git Flow](https://about.gitlab.com/images/git_flow/gitdashflow.png)
-    - difficulity arise in hotfix and patch that have to be applied to all branches
-
-  - Github Flow:
-
-    - master / feature branch seperation
-    - ![Github Flow](https://about.gitlab.com/images/git_flow/github_flow.png)
-    - Still leaves a lot of questions unanswered regarding deployments, environments, releases and integrations with issues.
-    - GitHub flow does assume you are able to deploy to production every time you merge a feature branch. This is possible for web developemnt. (SaaS)
-
-  - Gitlab Flow
-
-    -  Use Master / Production(Release) Branch 
-
-    - ![Simplest Form](https://about.gitlab.com/images/git_flow/production_branch.png)
-
-    - If you need a more exact time you can have your deployment script create a tag on each deployment.
-
-    - More Variant of Gitlab Flow
-
-      - https://about.gitlab.com/2014/09/29/gitlab-flow/
-      - ![Release Branch](https://about.gitlab.com/images/git_flow/release_branches.png)
-
-    - Git Command:
-
-      - ```bash
-        #create new branch, git branch mycode && git checkout mycode
-        git checkout -b mycode
-        #now at mycode branch, edit and add files and commit, after those 
-        git checkout master
-        git merge mycode
-        git push [origin...]
-        #wait for pull requets to be reviewed, tested, approved
-        ```
 
 ###  ARM CPU Family Clarify
 
