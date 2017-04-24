@@ -5,8 +5,8 @@
 ### Code Envrionment Usage:
 
 - ```bash
-  git clone https://github.com/Piping/rpvm && cd rpvm
-  #rpvm is your_work_directory now
+  git clone ...(copy the link)
+  #os is your_work_directory now
   #docker image for first time 
   docker build -t arm docker
   make code # this will lead you to the coding environment
