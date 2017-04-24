@@ -23,11 +23,11 @@
 static const char FromKernel[] = "kernel";
 
 CKernel::CKernel (void)
-:   m_Screen (m_Options.GetWidth (), m_Options.GetHeight ()),
-    m_Timer (&m_Interrupt),
-    m_Logger (m_Options.GetLogLevel (), &m_Timer)
+:	m_Screen (m_Options.GetWidth (), m_Options.GetHeight ()),
+	m_Timer (&m_Interrupt),
+	m_Logger (m_Options.GetLogLevel (), &m_Timer)
 {
-    m_ActLED.Blink (5); // show we are alive
+	m_ActLED.Blink (5);	// show we are alive
 }
 
 CKernel::~CKernel (void)
@@ -36,81 +36,81 @@ CKernel::~CKernel (void)
 
 boolean CKernel::Initialize (void)
 {
-    boolean bOK = TRUE;
+	boolean bOK = TRUE;
 
-    if (bOK)
-    {
-        bOK = m_Screen.Initialize ();
-    }
+	if (bOK)
+	{
+		bOK = m_Screen.Initialize ();
+	}
 
-    if (bOK)
-    {
-        bOK = m_Serial.Initialize (115200);
-    }
+	if (bOK)
+	{
+		bOK = m_Serial.Initialize (115200);
+	}
 
-    if (bOK)
-    {
-        CDevice *pTarget = m_DeviceNameService.GetDevice (m_Options.GetLogDevice (), FALSE);
-        if (pTarget == 0)
-        {
-            pTarget = &m_Screen;
-        }
+	if (bOK)
+	{
+		CDevice *pTarget = m_DeviceNameService.GetDevice (m_Options.GetLogDevice (), FALSE);
+		if (pTarget == 0)
+		{
+			pTarget = &m_Screen;
+		}
 
-        bOK = m_Logger.Initialize (pTarget);
-    }
+		bOK = m_Logger.Initialize (pTarget);
+	}
 
-    if (bOK)
-    {
-        bOK = m_Interrupt.Initialize ();
-    }
+	if (bOK)
+	{
+		bOK = m_Interrupt.Initialize ();
+	}
 
-    if (bOK)
-    {
-        bOK = m_Timer.Initialize ();
-    }
+	if (bOK)
+	{
+		bOK = m_Timer.Initialize ();
+	}
 
   uart_init();
 
-    return bOK;
+	return bOK;
 }
 
 TShutdownMode CKernel::Run (void)
 {
-    m_Logger.Write (FromKernel, LogNotice, "Compile time: " __DATE__ " " __TIME__);
+	m_Logger.Write (FromKernel, LogNotice, "Compile time: " __DATE__ " " __TIME__);
 
-    m_Logger.Write (FromKernel, LogNotice, "An exception will occur after 15 seconds from now");
+	m_Logger.Write (FromKernel, LogNotice, "An exception will occur after 15 seconds from now");
 
-    // start timer to elapse after 15 seconds
-    m_Timer.StartKernelTimer (15 * HZ, TimerHandler);
+	// start timer to elapse after 15 seconds
+	m_Timer.StartKernelTimer (15 * HZ, TimerHandler);
 
-    // generate a log message every second
-    unsigned nTime = m_Timer.GetTime ();
-    while (1)
-    {
-        while (nTime == m_Timer.GetTime ())
-        {
-            // just wait a second
-        }
+	// generate a log message every second
+	unsigned nTime = m_Timer.GetTime ();
+	while (1)
+	{
+		while (nTime == m_Timer.GetTime ())
+		{
+			// just wait a second
+		}
 
-        nTime = m_Timer.GetTime ();
+		nTime = m_Timer.GetTime ();
 
-        m_Logger.Write (FromKernel, LogNotice, "Time is %u", nTime);
+		m_Logger.Write (FromKernel, LogNotice, "Time is %u", nTime);
 
     uart_puts("Time is here\r");
-    }
+	}
 
-    return ShutdownHalt;
+	return ShutdownHalt;
 }
 
 void CKernel::TimerHandler (unsigned hTimer, void *pParam, void *pContext)
 {
 #if 1
-    // jump to an invalid address (execution is only allowed below _etext, see circle.ld)
-    void (*pInvalid) (void) = (void (*) (void)) 0x500000;
+	// jump to an invalid address (execution is only allowed below _etext, see circle.ld)
+	void (*pInvalid) (void) = (void (*) (void)) 0x500000;
 
-    (*pInvalid) ();
+	(*pInvalid) ();
 #else
-    // alternatively execute an undefined instruction
-    asm volatile (".word 0xFF000000");
+	// alternatively execute an undefined instruction
+	asm volatile (".word 0xFF000000");
 #endif
 }

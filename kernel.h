@@ -32,44 +32,37 @@
 #include <circle/logger.h>
 #include <circle/types.h>
 
-#include <circle/multicore.h>
-
 enum TShutdownMode
 {
-  ShutdownNone,
-  ShutdownHalt,
-  ShutdownReboot
+	ShutdownNone,
+	ShutdownHalt,
+	ShutdownReboot
 };
-
-class KMultiCoreSched;
 
 class CKernel
 {
 public:
-  CKernel (void);
-  ~CKernel (void);
+	CKernel (void);
+	~CKernel (void);
 
-  boolean Initialize (void);
+	boolean Initialize (void);
 
-  TShutdownMode Run (void);
-  
-private:
-  static void TimerHandler (unsigned hTimer, void *pParam, void *pContext);
-  static void ThreadWorker(int n, void *kernel);
+	TShutdownMode Run (void);
+	
+	static void TimerHandler (unsigned hTimer, void *pParam, void *pContext);
 
 private:
-  // do not change this order
-  CMemorySystem      m_Memory;
-  CActLED            m_ActLED;
-  CKernelOptions     m_Options;
-  CDeviceNameService m_DeviceNameService;
-  CScreenDevice      m_Screen;
-  CSerialDevice      m_Serial;
-  CExceptionHandler  m_ExceptionHandler;
-  CInterruptSystem   m_Interrupt;
-  CTimer             m_Timer;
-  CLogger            m_Logger;
-  KMultiCoreSched    *m_MultiCoreSched[CORES];  
+	// do not change this order
+	CMemorySystem		m_Memory;
+	CActLED			m_ActLED;
+	CKernelOptions		m_Options;
+	CDeviceNameService	m_DeviceNameService;
+	CScreenDevice		m_Screen;
+	CSerialDevice		m_Serial;
+	CExceptionHandler	m_ExceptionHandler;
+	CInterruptSystem	m_Interrupt;
+	CTimer			m_Timer;
+	CLogger			m_Logger;
 };
 
 #endif
